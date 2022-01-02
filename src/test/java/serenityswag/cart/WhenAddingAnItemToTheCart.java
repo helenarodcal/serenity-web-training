@@ -83,4 +83,26 @@ public class WhenAddingAnItemToTheCart {
     private List<String> firstThreeProductTitlesDisplayed() {
         return productList.titles().subList(0, 3);
     }
+
+    CartPageObject cartPage;
+
+    @Test
+    public void pricesForEachItemShouldBeShownInTheCart() {
+        //add items to shopping cart
+        cart.addItems(firstThreeProductTitlesDisplayed());
+
+        //open cart page
+        cartPage.open();
+
+        //check that each item in the cart has a price
+        //first we need a DOMAIN OBJECT called cartItem that would contain
+        //title, description and price
+        List<CartItem> items = cartPage.items();
+            //check that all elements are in the cart
+            // and price is greater than 0
+            //and description is not empty
+        assertThat(items).hasSize(3)
+                .allMatch(item -> item.price() > 0.0)
+                .allMatch(item -> !item.description().isEmpty());
+    }
 }
