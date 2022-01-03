@@ -4,9 +4,12 @@ import net.serenitybdd.core.Serenity;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Managed;
+import net.thucydides.core.annotations.Steps;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
+import seleniumeasy.actions.FormPage;
+import seleniumeasy.actions.NavigateActions;
 import seleniumeasy.pageobjects.*;
 
 import java.util.List;
@@ -23,6 +26,8 @@ public class WhenInteractingWithInputForms {
     @Managed(driver = "chrome", uniqueSession = true)
     WebDriver driver;
 
+    @Steps
+    NavigateActions navigate;
     /**
      * ***** DEMO WEB PAGE NOT WORKING ****************
      * Basic form fields:
@@ -33,7 +38,8 @@ public class WhenInteractingWithInputForms {
 
     @Test
     public void basicForms() {
-        singleInputFieldForm.open();
+//        singleInputFieldForm.open();
+        navigate.toTheSingleInputFieldForm();
 
         String inputMessage = "Hi there!";
         singleInputFieldForm.enterMessage(inputMessage);
@@ -54,7 +60,8 @@ public class WhenInteractingWithInputForms {
 
     @Test
     public void basicFormsWithMultipleFields() {
-        twoInputFieldForm.open();
+//        twoInputFieldForm.open();
+        navigate.toTheTwoInputFieldForm();
 
         twoInputFieldForm.enterA("2");
         twoInputFieldForm.enterB("3");
@@ -73,7 +80,8 @@ public class WhenInteractingWithInputForms {
 
     @Test
     public void singleCheckbox() {
-        singleCheckboxForm.open();
+//        singleCheckboxForm.open();
+        navigate.toTheSingleCheckboxForm();
 
         if (!singleCheckboxForm.selectionForCheckboxAtPosition("1")) {
             singleCheckboxForm.setCheckboxAtPosition("1");
@@ -115,7 +123,9 @@ public class WhenInteractingWithInputForms {
 
     @Test
     public void radioButtons() {
-        radioButtonsForm.open();
+//        radioButtonsForm.open();
+        navigate.to(FormPage.RadioButtonsForm);
+
         String option = "Impressive";
 
         radioButtonsForm.selectOption(option);
@@ -134,7 +144,8 @@ public class WhenInteractingWithInputForms {
     @Test
     public void multipleRadioButtons() {
 
-        multipleRadioButtonForm.open();
+//        multipleRadioButtonForm.open();
+        navigate.to(FormPage.MultipleRadioButtonForm);
 
         multipleRadioButtonForm.selectGender("Female");
         multipleRadioButtonForm.selectAgeGroup("15 - 50");
@@ -200,19 +211,22 @@ public class WhenInteractingWithInputForms {
 
     @Test
     public void hoverOverOneFigure() {
-        hoverPage.open();
+//        hoverPage.open();
+        navigate.to(FormPage.HoverPage);
 
         hoverPage.hoverOverFigure(1);
         hoverPage.captionForFigure(1).shouldBeVisible();
         hoverPage.captionForFigure(1).shouldContainText("user1");
     }
+
     /**
      * Hover over all images in the page and get caption
      * "https://the-internet.herokuapp.com/hovers"
      */
     @Test
     public void hoverOverAllFigures() {
-        hoverPage.open();
+//        hoverPage.open();
+        navigate.to(FormPage.HoverPage);
 
         int numberOfFigures = hoverPage.getNumberOfFigures();
         for (int i = 1; i <= numberOfFigures; i++) {
@@ -225,13 +239,14 @@ public class WhenInteractingWithInputForms {
     DragAndDropPage dragAndDropPage;
 
     /**
-    * ***** DRAG-N-DROP ACTION NOT WORKING ****************
+     * ***** DRAG-N-DROP ACTION NOT WORKING ****************
      * Drag and drop one image into another
      * "https://the-internet.herokuapp.com/drag_and_drop"
      */
     @Test
     public void dragAndDropFigures() {
-        dragAndDropPage.open();
+//        dragAndDropPage.open();
+        navigate.to(FormPage.DragAndDropPage);
 
         assertThat(dragAndDropPage.headerForFigure(1)).isEqualTo("A");
 
