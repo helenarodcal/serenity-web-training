@@ -28,7 +28,13 @@ public class WhenLoggingOn {
 
         login.as(STANDARD_USER);
 
+        //include arbitrary messages in the report
+        Serenity.recordReportData()
+                .withTitle("User credentials")
+                .andContents("User: " + STANDARD_USER);
+
         // Should see product catalog
+                //include assertion in the report
         Serenity.reportThat("The inventory page should be displayed with the correct title",
                 () -> assertThat(inventoryPage.getHeading()).isEqualToIgnoringCase("Products")
         );
