@@ -17,7 +17,7 @@ public class DragAndDropPage extends PageObject {
         new Actions(getDriver()).dragAndDrop(
                 $(FIGURE_IMAGE, from),
                 $(FIGURE_IMAGE, to)
-        ).perform();
+        ).build().perform();
 //        withAction().dragAndDrop(
 //                $(FIGURE_IMAGE, from),
 //                $(FIGURE_IMAGE, to)
