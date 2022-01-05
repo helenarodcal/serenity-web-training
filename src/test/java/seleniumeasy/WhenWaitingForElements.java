@@ -109,8 +109,6 @@ public class WhenWaitingForElements {
 
         assertThat(dynamicDataPage.loadingMessage().isVisible()).isFalse();
         assertThat(dynamicDataPage.appearingMessage().isVisible()).isTrue();
-
-
     }
 
     private boolean isConfirmPresent() {
