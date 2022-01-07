@@ -89,8 +89,9 @@
                     <systemPropertyVariables>
                         <webdriver.base.url>${webdriver.base.url}</webdriver.base.url>
                     </systemPropertyVariables>
-                    <parallel>classes</parallel>
-                    <threadCount>${parallel.tests}</threadCount>
+                    <parallel>methodsAndClasses</parallel>
+<!--                    <threadCount>${parallel.tests}</threadCount>-->
+                    <useUnlimitedThreads>true</useUnlimitedThreads>
                     <forkCount>${parallel.tests}</forkCount>
                 </configuration>
                 <executions>
