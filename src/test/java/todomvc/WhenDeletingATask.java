@@ -1,14 +1,58 @@
 package todomvc;
 
+import net.serenitybdd.core.Serenity;
+import net.serenitybdd.junit.runners.SerenityRunner;
+import net.thucydides.core.annotations.Managed;
+import net.thucydides.core.annotations.Steps;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.openqa.selenium.WebDriver;
+import todomvc.actions.TodoListActions;
+import todomvc.domain.StatusList;
+import todomvc.pageobjects.TodoListPage;
 
-public class WhenDeletingATask {
+import java.util.Arrays;
+import java.util.List;
 
-    // TODO: Exercise 5
+import static org.assertj.core.api.Assertions.assertThat;
+
+@RunWith(SerenityRunner.class)
+public class WhenDeletingATask{
+    @Managed
+    WebDriver driver;
+
+    TodoListPage todoListPage;
+
+    @Before
+    public void openWeb() {
+        todoListPage.open();
+    }
+
+    @Steps
+    TodoListActions todoList;
+
     @Test
-    public void deletedItemsShouldDissapearFromTheList() {
+    public void deletedItemsShouldDisappearFromTheList() {
         // Add "Feed the cat" and "Walk the dog" to the list
+        List<String> newTasks = Arrays.asList("Feed the cat", "Walk the dog");
+        todoList.addTasks(newTasks);
+
         // Delete "Feed the cat"
+        todoList.deleteTasks(newTasks.get(0));
+
+        // Filter by "Active"
+        todoList.filterBy(StatusList.All); //redundant step just in case
+
         // Check that only "Walk the dog" appears
+        Serenity.reportThat("The number of tasks displayed should be 1",
+                () -> assertThat(todoList.tasks().size()).isEqualTo(1)
+        );
+        Serenity.reportThat("The deleted task should not be displayed",
+                () -> assertThat(todoList.tasks()).doesNotContain(newTasks.get(0))
+        );
+        Serenity.reportThat("The remaining task should be displayed",
+                () -> assertThat(todoList.tasks()).containsExactly(newTasks.get(1))
+        );
     }
 }
