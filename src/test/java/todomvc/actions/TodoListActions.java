@@ -35,9 +35,6 @@ public class TodoListActions extends UIInteractionSteps {
     public void filterBy(StatusList status) {
         findBy(FILTER_BUTTON, status).click();
     }
-    public void filterBy(String status) {
-        findBy(FILTER_BUTTON, status).click();
-    }
 
     @Step("The user deletes the task: {0}")
     public void deleteTasks(String task) {
