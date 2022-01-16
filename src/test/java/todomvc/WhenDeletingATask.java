@@ -14,12 +14,12 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class WhenDeletingATask{
+class WhenDeletingATask{
     @Managed
     WebDriver driver;
 
     @BeforeEach
-    public void openWeb() {
+    void openWeb() {
         todoList.openPageNamed("home");
     }
 
@@ -27,7 +27,7 @@ public class WhenDeletingATask{
     TodoListActions todoList;
 
     @Test
-    public void deletedItemsShouldDisappearFromTheList() {
+    void deletedItemsShouldDisappearFromTheList() {
         // Add "Feed the cat" and "Walk the dog" to the list
         List<String> newTasks = Arrays.asList("Feed the cat", "Walk the dog");
         todoList.addTasks(newTasks);

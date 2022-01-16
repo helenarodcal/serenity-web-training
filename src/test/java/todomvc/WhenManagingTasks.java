@@ -25,14 +25,14 @@ import static todomvc.domain.StatusList.*;
 
 @RunWith(SerenityParameterizedRunner.class)
 @Concurrent
-public class WhenManagingTasks {
+class WhenManagingTasks {
 
     private final List<String> initialTaskList;
     private final StatusList status;
     private final String completedTask;
     private final List<String> displayedTasksList;
 
-    public WhenManagingTasks(List<String> initialTaskList, String completedTask,
+    WhenManagingTasks(List<String> initialTaskList, String completedTask,
                              StatusList status, List<String> displayedTasksList) {
         this.initialTaskList = initialTaskList;
         this.completedTask = completedTask;
@@ -44,7 +44,7 @@ public class WhenManagingTasks {
     WebDriver driver;
 
     @TestData(columnNames = "Tasks created, Completed task, Filter, Tasks displayed")
-    public static Collection<Object[]> testData() {
+    static Collection<Object[]> testData() {
         return asList(
                 new Object[][]{
                         {asList("Feed the cat", "Walk the dog"), "Feed the cat", Completed, singletonList("Feed the cat")},
@@ -55,12 +55,12 @@ public class WhenManagingTasks {
     }
 
     @BeforeEach
-    public void openWeb() {
+    void openWeb() {
         todoList.openPageNamed("home");
     }
 
     @Qualifier
-    public String qualifier() {
+    String qualifier() {
         return "The user add the tasks " + initialTaskList.toString() + ". Then completes task "
                 + completedTask + " and filters by " + status + ". The list displayed should be correct";
     }
@@ -70,7 +70,7 @@ public class WhenManagingTasks {
 
     @Test
     @Title("Different actions on tasks and task list are executed (create, complete, delete, filter")
-    public void whenManagingTasks() {
+    void whenManagingTasks() {
         // Add "Feed the cat" and "Walk the dog" to the list
         todoList.addTasks(initialTaskList);
 

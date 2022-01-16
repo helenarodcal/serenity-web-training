@@ -3,6 +3,9 @@ package todomvc.actions;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.serenitybdd.core.steps.UIInteractionSteps;
 import net.thucydides.core.annotations.Step;
+import org.openqa.selenium.JavascriptException;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.devtools.idealized.Javascript;
 import todomvc.domain.StatusList;
 import todomvc.pageobjects.TodoListPage;
 
@@ -41,5 +44,9 @@ public class TodoListActions extends UIInteractionSteps {
         WebElementFacade taskItem = findBy(TASK_ITEM,task);
         withAction().moveToElement(taskItem).perform();
         findBy(DELETE_TASK_BUTTON, task).click();
+    }
+
+    public void clearList() {
+       ((JavascriptExecutor)getDriver()).executeScript("localStorage.clear();");
     }
 }
