@@ -22,11 +22,9 @@ public class WhenCompletingATask {
     @Managed
     WebDriver driver;
 
-    TodoListPage todoListPage;
-
     @Before
     public void openWeb() {
-        todoListPage.open();
+        todoList.openPageNamed("home");
     }
 
     @Steps

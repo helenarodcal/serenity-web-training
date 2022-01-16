@@ -22,15 +22,13 @@ public class WhenAddingTasks {
     @Managed
     WebDriver driver;
 
-    TodoListPage todoListPage;
+    @Steps
+    TodoListActions todoList;
 
     @Before
     public void openWeb() {
-        todoListPage.open();
+        todoList.openPageNamed("home");
     }
-
-    @Steps
-    TodoListActions todoList;
 
     @Test
     public void addingASingleTask() {

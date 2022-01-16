@@ -55,11 +55,9 @@ public class WhenManagingTasks {
         );
     }
 
-    TodoListPage todoListPage;
-
     @Before
     public void openWeb() {
-        todoListPage.open();
+        todoList.openPageNamed("home");
     }
 
     @Qualifier

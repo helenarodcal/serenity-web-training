@@ -3,8 +3,7 @@ package todomvc.pageobjects;
 import net.serenitybdd.core.pages.PageObject;
 import net.thucydides.core.annotations.DefaultUrl;
 
-@DefaultUrl("https://todomvc.com/examples/angularjs/#/")
-public class TodoListPage extends PageObject {
+public class TodoListPage {
 
     public static final String INPUT_TASK = ".new-todo";
     public static final String TASK_LIST = ".todo-list label";
