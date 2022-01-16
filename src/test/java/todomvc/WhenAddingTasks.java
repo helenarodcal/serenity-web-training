@@ -1,22 +1,18 @@
 package todomvc;
 
 import net.serenitybdd.core.Serenity;
-import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.Steps;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import todomvc.actions.TodoListActions;
-import todomvc.pageobjects.TodoListPage;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SerenityRunner.class)
 public class WhenAddingTasks {
 
     @Managed
@@ -25,7 +21,7 @@ public class WhenAddingTasks {
     @Steps
     TodoListActions todoList;
 
-    @Before
+    @BeforeEach
     public void openWeb() {
         todoList.openPageNamed("home");
     }

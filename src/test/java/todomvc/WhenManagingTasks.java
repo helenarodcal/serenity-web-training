@@ -8,13 +8,12 @@ import net.thucydides.core.annotations.Title;
 import net.thucydides.junit.annotations.Concurrent;
 import net.thucydides.junit.annotations.Qualifier;
 import net.thucydides.junit.annotations.TestData;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import todomvc.actions.TodoListActions;
 import todomvc.domain.StatusList;
-import todomvc.pageobjects.TodoListPage;
 
 import java.util.Collection;
 import java.util.List;
@@ -55,7 +54,7 @@ public class WhenManagingTasks {
         );
     }
 
-    @Before
+    @BeforeEach
     public void openWeb() {
         todoList.openPageNamed("home");
     }
